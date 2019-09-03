@@ -1,0 +1,38 @@
+<% if edit %>
+  <% action = cat_url(cat) %>
+<% else %>
+  <% action = cats_url %>
+<% end %>
+
+
+
+<form action="<%= action %>" method="POST"> 
+  <% if edit %>
+    <input type="hidden" name="_method" value="PATCH">
+  <% end %>
+  <h1> Edit <%= cat.name %> </h1>
+    <label for="name"> Name: </label>
+      <input type="text" id="name" name="cat[name]" value="<%= cat.name %>">
+  <br>
+    <label for="sex" > Sexx: </label>
+      M <input type="radio" id="sex" value="M" name="cat[sex]" checked=<% cat.sex == 'M' %> value="<%= cat.sex %>">
+      F <input type="radio" id="sex" value="F" name="cat[sex]" checked=<% cat.sex == 'F' %> value="<%= cat.sex %>">
+
+  <br>
+    <label for="color" > Coleur: </label>
+      <select name="cat[color]" id="color" value="<%= cat.color %>">
+      <option value="color"> --select a color-- </option>
+        <% Cat.colors.each do |c| %>
+          <option value="<%= c %>" selected="<% cat.color %>" > <%=  c %> </option>
+        <% end %>
+      </select>
+  <br>
+    <label for="birth_date"> Birth Dizzle: </label>
+      <input type="date" id="birth_date"  name="cat[birth_date]" value="<%= cat.birth_date %>">
+  <br>
+    <label for="description"> Description: </label>
+      <input type="textarea" id="description" name="cat[description]" value="<%= cat.description %>">
+  <br>
+
+  <input type="submit" value="meow meow meow">
+</form>

@@ -1,11 +1,12 @@
 class CatsController < ApplicationController
   def index
     @cats = Cat.all
+
+    render :index
   end
 
   def create
     cat = Cat.new(cat_params)
-    debugger
     if cat.save
       redirect_to cats_url
     else
@@ -15,19 +16,25 @@ class CatsController < ApplicationController
   end
 
   def new
-    
+    @cat = Cat.new
+
+    render :new
   end
 
   def edit
-    @cat = Cat.find_by(id: params[:id])
+    @cat = Cat.find(params[:id])
+
+    render :edit
   end
 
   def show
     @cat = Cat.find_by(id: params[:id])
+
+    render :show
   end
 
   def update
-    cat.find_by(id: params[:id])
+    cat = Cat.find(params[:id])
 
     if cat.update(cat_params)
       redirect_to cat_url(cat.id)

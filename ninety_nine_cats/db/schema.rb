@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_03_160000) do
+ActiveRecord::Schema.define(version: 2019_09_03_212446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cat_rental_requests", force: :cascade do |t|
+    t.integer "cat_id", null: false
+    t.date "start_date", null: false
+    t.date "end_date", null: false
+    t.string "status", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "cats", force: :cascade do |t|
     t.date "birth_date", null: false
